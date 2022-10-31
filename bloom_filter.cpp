@@ -1,11 +1,7 @@
 
 
-#include <bitset>
-#include <cstddef>
 #include <functional>
-#include <initializer_list>
 #include <iostream>
-#include <vector>
 
 #include "bloom_filter.h"
 
