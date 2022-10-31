@@ -26,16 +26,16 @@ bloom_filter::bloom_filter(
 
 void bloom_filter::insert(const char* data) {
   for (const auto& hash_func : hash_functions_) {
-    auto hash = hash_func(data);
-    hash %= (num_items_ * BSIZE);
-    buffer_[hash / BSIZE] |= 1 << (hash % BSIZE);
+    const auto hash = hash_func(data);
+    const auto bit = hash % (num_items_ * BSIZE);
+    buffer_[bit / BSIZE] |= 1 << (bit % BSIZE);
   }
 }
 
 bool bloom_filter::contains(const char* data) {
   for (const auto& hash_func : hash_functions_) {
-    auto hash = hash_func(data);
-    auto bit = hash % (num_items_ * BSIZE);
+    const auto hash = hash_func(data);
+    const auto bit = hash % (num_items_ * BSIZE);
     if (!(buffer_[bit / BSIZE] & (1 << (bit % BSIZE)))) {
       return false;
     }
