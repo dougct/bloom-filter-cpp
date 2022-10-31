@@ -6,19 +6,6 @@
 #include <iostream>
 #include <vector>
 
-// static const std::size_t bits_per_char = 0x08;  // 8 bits in 1 char(unsigned)
-
-// static const unsigned char bit_mask[bits_per_char] = {
-//     0x01,  // 00000001
-//     0x02,  // 00000010
-//     0x04,  // 00000100
-//     0x08,  // 00001000
-//     0x10,  // 00010000
-//     0x20,  // 00100000
-//     0x40,  // 01000000
-//     0x80   // 10000000
-// };
-
 class bloom_filter {
  private:
  public:
