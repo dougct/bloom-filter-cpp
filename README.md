@@ -1,10 +1,8 @@
-# Python dictionary implementation in C++
+# Bloom Filter implementation in C++
 
 ## How to build and run
 
 ```bash
-> mkdir build && cd build
-> cmake ..
-> make
-> ./dict
+make bloom
+./a.out
 ```
