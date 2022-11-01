@@ -6,8 +6,6 @@
 class bloom_filter {
  private:
  public:
-  ~bloom_filter();
-
   bloom_filter() = default;
 
   explicit bloom_filter(size_t num_items);
@@ -27,7 +25,6 @@ class bloom_filter {
 
  private:
   size_t num_items_{0};
+  std::vector<char> buffer_;
   std::vector<std::function<size_t(const char* data)>> hash_functions_;
-  char* buffer_;
-  std::allocator<char> alloc_;
 };
