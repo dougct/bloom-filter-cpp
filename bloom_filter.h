@@ -21,7 +21,7 @@ class bloom_filter {
 
   friend std::ostream& operator<<(std::ostream& os, const bloom_filter& bloom);
 
-  static const size_t BSIZE;
+  static inline const size_t bitsPerChar = 8;
 
  private:
   size_t num_items_{0};

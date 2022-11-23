@@ -5,7 +5,6 @@
 
 #include "bloom_filter.h"
 
-const size_t bloom_filter::BSIZE = 8;
 
 bloom_filter::bloom_filter(size_t num_items)
     : num_items_(num_items), buffer_(num_items, 0) {}
@@ -20,18 +19,16 @@ bloom_filter::bloom_filter(
 void bloom_filter::insert(const char* data) {
   for (const auto& hash_func : hash_functions_) {
     const auto hash = hash_func(data);
-    const auto target_bit = hash % (num_items_ * BSIZE);
-    const auto target_byte = target_bit / BSIZE;
-    buffer_[target_byte] |= 1 << (target_bit % BSIZE);
+    const auto bit = hash % (num_items_ * bitsPerChar);
+    buffer_[bit / bitsPerChar] |= 1 << (bit % bitsPerChar);
   }
 }
 
 bool bloom_filter::contains(const char* data) {
   for (const auto& hash_func : hash_functions_) {
     const auto hash = hash_func(data);
-    const auto target_bit = hash % (num_items_ * BSIZE);
-    const auto target_byte = target_bit / BSIZE;
-    if (!(buffer_[target_byte] & (1 << (target_bit % BSIZE)))) {
+    const auto bit = hash % (num_items_ * bitsPerChar);
+    if (!(buffer_[bit / bitsPerChar] & (1 << (bit % bitsPerChar)))) {
       return false;
     }
   }
