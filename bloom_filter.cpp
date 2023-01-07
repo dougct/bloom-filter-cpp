@@ -11,7 +11,7 @@ bloom_filter::bloom_filter(size_t num_items)
 
 bloom_filter::bloom_filter(
     size_t num_items,
-    std::initializer_list<std::function<size_t(const char* data)>> hash_funcs)
+    std::vector<std::function<size_t(const char* data)>> hash_funcs)
     : num_items_(num_items),
       buffer_(num_items, 0),
       hash_functions_(hash_funcs) {}

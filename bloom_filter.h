@@ -12,7 +12,7 @@ class bloom_filter {
 
   explicit bloom_filter(
       size_t num_items,
-      std::initializer_list<std::function<size_t(const char* data)>>
+      std::vector<std::function<size_t(const char* data)>>
           hash_funcs);
 
   void insert(const char* data);
